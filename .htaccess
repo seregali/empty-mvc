@@ -1,0 +1,43 @@
+AddDefaultCharset UTF-8
+
+RewriteEngine On
+
+# Block out any script trying to base64_encode crap to send via URL
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+# Block out any script that includes a <script> tag in URL
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+# Block out any script trying to set a PHP GLOBALS variable via URL
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+# Block out any script trying to modify a _REQUEST variable via URL
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+# Send all blocked request to homepage with 403 Forbidden error!
+RewriteRule ^(.*)$ index.php [F,L]
+
+RewriteRule ^libs/ - [L,QSA]
+
+RewriteRule ^static/css/$ libs/min/index.php [L,QSA]
+RewriteRule ^static/js/$ libs/min/index.php [L,QSA]
+
+RewriteRule \.(css|js|jpe?g|gif|png|swf|ttf|otf|htm|hmtl|txt|tga|ico|docx)$ - [NC,L]
+
+RewriteRule ^image/resize static/libs/timthumb/timthumb.php [L,QSA]
+
+RewriteRule ^registration$ index.php?route=user/registration [L,QSA]
+RewriteRule ^settings$ index.php?route=user/settings [L,QSA]
+RewriteRule ^registration/complete$ index.php?route=user/complete [L]
+RewriteRule ^activation/([^/]*)$ index.php?route=user/activation&code=$1 [L]
+RewriteRule ^forgot$ index.php?route=user/forgot [L,QSA]
+RewriteRule ^logout$ index.php?route=user/logout [L]
+RewriteRule ^login$ index.php?route=user/login [L,QSA]
+RewriteRule ^admin$ index.php?route=admin/index [L]
+
+RewriteRule ^article/viewlist$ index.php?route=article/viewlist [L]
+RewriteRule ^article/addto/([^/]*) index.php?route=article/edit&parentId=$1 [L,QSA]
+RewriteRule ^article/edit$ index.php?route=article/edit [L]
+RewriteRule ^article/sort$ index.php?route=article/sort [L]
+RewriteRule ^article/([^/]*)/([^/]*)$ index.php?route=article/$1&id=$2 [L]
+RewriteRule ^article/([^/]*)$ index.php?route=article/show&alias=$1 [L]
+RewriteRule ^cabinet$ index.php?route=user/cabinet [L]
+
+RewriteRule ^([^/]*)/([^/]*)$ index.php?route=$1/$2 [L,QSA]
+RewriteRule ^([^/]*)/([^/]*)/([^/]*)$ index.php?route=$1/$2&id=$3 [L,QSA]

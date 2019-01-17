@@ -1,0 +1,102 @@
+body {
+  padding: 0 0 60px;
+}
+form {
+  width: 65%;
+}
+.container.login form {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  form {
+    width: 100%;
+  }
+}
+a.strong {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.bottomPanel {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  height: 60px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #e7e7e7;
+  line-height: 60px;
+}
+.btn-toolbar {
+  margin-left: 0 !important;
+}
+.container.login {
+  width: 30%;
+  margin: 0 auto;
+}
+#gallery-images {
+  margin: 20px 0;
+}
+.gallery-image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 10px 10px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+.gallery-image:hover .gallery-image-delete {
+  display: block;
+}
+.gallery-image .gallery-image-delete {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 4px;
+  right: 4px;
+  background-color: #fff;
+  line-height: 20px;
+  text-align: center;
+  display: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.js-item {
+  margin-bottom: 5px;
+}
+
+.js-item .js-item-wrap {
+  border-bottom: 1px solid #00b9f6;
+  padding: 5px;
+}
+
+.js-item.active .js-item-wrap {
+  background-color: #00b9f6;
+}
+
+.js-item.active a {
+  color: #fff;
+}
+
+#addLine {
+  cursor: pointer;
+}
+.removeLine {
+  cursor: pointer;
+}
+
+.newline {
+  padding: 5px 0px;
+}
+
+select.form-control {
+  height: 35px !important;
+}
+
+input[type=number].form-control {
+  width: 70px !important;
+  display: inline-block !important;
+  margin: 5px;
+}
